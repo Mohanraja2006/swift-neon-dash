@@ -59,11 +59,14 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-coin: var(--coin);
+  --color-danger: var(--danger);
+  --font-display: "Orbitron", ui-sans-serif, system-ui;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --radius: 0.9rem;
+  --background: oklch(0.13 0.045 285);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
@@ -140,5 +143,132 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+  }
+}
+
+
+/* ---------- NEON RUNNER theme ---------- */
+:root {
+  --background: oklch(0.12 0.05 288);
+  --foreground: oklch(0.97 0.01 250);
+  --card: oklch(0.17 0.06 288);
+  --card-foreground: oklch(0.97 0.01 250);
+  --popover: oklch(0.17 0.06 288);
+  --popover-foreground: oklch(0.97 0.01 250);
+  --primary: oklch(0.78 0.16 200);
+  --primary-foreground: oklch(0.12 0.05 288);
+  --secondary: oklch(0.24 0.08 295);
+  --secondary-foreground: oklch(0.97 0.01 250);
+  --muted: oklch(0.26 0.06 292);
+  --muted-foreground: oklch(0.74 0.04 285);
+  --accent: oklch(0.7 0.24 340);
+  --accent-foreground: oklch(0.12 0.05 288);
+  --destructive: oklch(0.63 0.24 20);
+  --destructive-foreground: oklch(0.98 0.01 250);
+  --border: oklch(0.98 0.02 250 / 14%);
+  --input: oklch(0.98 0.02 250 / 18%);
+  --ring: oklch(0.78 0.16 200);
+  --coin: oklch(0.86 0.16 85);
+  --danger: oklch(0.68 0.23 15);
+}
+
+@layer base {
+  body {
+    font-family: "Rajdhani", ui-sans-serif, system-ui, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--primary) 12%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--primary) 12%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black, transparent 75%);
+}
+
+@utility bg-overlay {
+  background: color-mix(in oklab, var(--background) 78%, transparent);
+}
+
+@utility bg-speed {
+  background: linear-gradient(90deg, var(--primary), var(--accent), var(--coin));
+}
+
+@utility font-display {
+  font-family: "Orbitron", ui-sans-serif, system-ui;
+}
+
+@utility text-neon {
+  color: var(--primary);
+  text-shadow:
+    0 0 12px color-mix(in oklab, var(--primary) 70%, transparent),
+    0 0 34px color-mix(in oklab, var(--primary) 40%, transparent);
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--card) 55%, transparent);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(18px) saturate(150%);
+  box-shadow:
+    0 20px 60px -20px color-mix(in oklab, var(--primary) 35%, transparent),
+    inset 0 1px 0 color-mix(in oklab, white 10%, transparent);
+}
+
+@utility glass-soft {
+  background: color-mix(in oklab, var(--card) 45%, transparent);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+}
+
+@layer components {
+  .btn-neon,
+  .btn-glass,
+  .tab,
+  .tab-active {
+    font-family: "Orbitron", ui-sans-serif, system-ui;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    border-radius: var(--radius);
+    padding: 0.65rem 1.4rem;
+    cursor: pointer;
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.25s ease,
+      background 0.25s ease;
+  }
+  .btn-neon {
+    color: var(--primary-foreground);
+    background: linear-gradient(120deg, var(--primary), var(--accent));
+    box-shadow: 0 0 22px color-mix(in oklab, var(--primary) 55%, transparent);
+  }
+  .btn-neon:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 0 38px color-mix(in oklab, var(--accent) 65%, transparent);
+  }
+  .btn-glass {
+    color: var(--foreground);
+    background: color-mix(in oklab, var(--card) 60%, transparent);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+  .btn-glass:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 0 24px color-mix(in oklab, var(--primary) 40%, transparent);
+  }
+  .btn-glass:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .tab {
+    color: var(--muted-foreground);
+    background: transparent;
+    border: 1px solid var(--border);
+  }
+  .tab-active {
+    color: var(--primary-foreground);
+    background: var(--primary);
+    box-shadow: 0 0 20px color-mix(in oklab, var(--primary) 50%, transparent);
   }
 }
