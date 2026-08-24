@@ -180,7 +180,7 @@ export class NeonRunner {
     this.vy = 0;
     this.jumps = 0;
     this.sliding = false;
-    this.spawnTimer = 60;
+    this.spawnTimer = 150;
     this.coinTimer = 40;
     this.shake = 0;
     this.phase = "playing";
