@@ -125,7 +125,7 @@ export class NeonRunner {
   private shake = 0;
   private flash = 0;
 
-  skin: Skin = SKINS[0];
+  skin: Skin = SKINS[0]!;
   best = 0;
   totalCoins = 0;
   unlocked: string[] = ["cyan"];
@@ -244,7 +244,7 @@ export class NeonRunner {
   private spawnObstacle() {
     const r = Math.random();
     const palette = ["#ff2fb5", "#00e5ff", "#8cff2f"];
-    const hue = palette[Math.floor(Math.random() * palette.length)];
+    const hue = palette[Math.floor(Math.random() * palette.length)]!;
     if (r < 0.42) {
       const h = 40 + Math.random() * 45;
       this.obstacles.push({ x: W + 40, y: GROUND - h, w: 34 + Math.random() * 26, h, kind: "block", hue });
@@ -437,11 +437,11 @@ export class NeonRunner {
     const colors = ["rgba(50,20,90,0.85)", "rgba(70,25,120,0.9)", "rgba(28,10,55,0.95)"];
     const neon = ["#5b2bd6", "#a02fff", "#00e5ff"];
     this.layers.forEach((layer, i) => {
-      c.fillStyle = colors[i];
+      c.fillStyle = colors[i]!;
       for (const b of layer) {
         const top = GROUND - b.h;
         c.fillRect(b.x, top, b.w, b.h);
-        c.strokeStyle = neon[i];
+        c.strokeStyle = neon[i]!;
         c.globalAlpha = 0.5;
         c.lineWidth = 1.5;
         c.strokeRect(b.x + 0.5, top + 0.5, b.w - 1, b.h - 1);
@@ -454,7 +454,7 @@ export class NeonRunner {
               c.fillRect(wx, wy, 5, 7);
           }
         }
-        c.fillStyle = colors[i];
+        c.fillStyle = colors[i]!;
       }
     });
 
